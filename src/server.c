@@ -22,16 +22,16 @@ process(char *msg, size_t size)
              pair < root->data.mapping.pairs.top; pair++) {
             yaml_node_t *k = yaml_document_get_node(&d, pair->key);
             yaml_node_t *v = yaml_document_get_node(&d, pair->value);
+            xml_node((char*)k->data.scalar.value);
             if (v->type == YAML_SCALAR_NODE) {
-                xml_node((char*)k->data.scalar.value,
-                         (char*)v->data.scalar.value);
+                xml_text((char*)v->data.scalar.value);
             } else if (v->type == YAML_MAPPING_NODE) {
                 for (yaml_node_pair_t *c_pair = v->data.mapping.pairs.start;
                      c_pair < v->data.mapping.pairs.top; c_pair++) {
                     yaml_node_t *ck = yaml_document_get_node(&d, c_pair->key);
                     yaml_node_t *cv = yaml_document_get_node(&d, c_pair->value);
-                    xml_node((char*)ck->data.scalar.value,
-                             (char*)cv->data.scalar.value);
+                    xml_child_node((char*)ck->data.scalar.value,
+                                   (char*)cv->data.scalar.value);
                 }
             }
         }
