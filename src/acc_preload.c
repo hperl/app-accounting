@@ -54,6 +54,8 @@ execve(const char *path, char *const argv[], char *const envp[])
         char buf[BUF_MAX];
         size_t pos = 0;
         
+        signal(SIGINT,  do_nothing);
+        signal(SIGTERM, do_nothing);
         /* go watch */
         start_time = time(NULL);
         /* wait on process until it terminated (stops are already ignored) */
@@ -86,11 +88,7 @@ execve(const char *path, char *const argv[], char *const envp[])
         if (pos > BUF_MAX) { goto buffer_overflow; }
         
     buffer_overflow:
-        puts(buf);
         app_acc_send_msg(buf, pos+1);
-//
-//    buffer_overflow:
-//        send(buf, pos+1);
     }
     exit(EXIT_SUCCESS);
 }

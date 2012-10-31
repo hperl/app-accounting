@@ -10,8 +10,6 @@ process(char *msg, size_t size)
     yaml_document_t d;
     yaml_node_t *root;
     
-    puts(msg);
-    
     yaml_parser_initialize(&p);
     yaml_parser_set_input_string(&p, (unsigned char*)msg, strlen(msg));
     yaml_parser_load(&p, &d);
