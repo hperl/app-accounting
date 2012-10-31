@@ -29,6 +29,27 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
        need to remove CMakeCache.txt.")
 endif()
 
+add_library(
+  acc_preload
+  SHARED
+  symbols.h
+  acc_preload.c
+)
+set_target_properties(
+  acc_preload
+  PROPERTIES
+  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
+)
+target_link_libraries(
+  acc_preload
+  ${ZEROMQ_LIBRARIES}
+)
+
+add_executable(
+  exec_testing
+  exec_testing.c
+)
+
 add_executable(
   wrapper
   wrapper.c
