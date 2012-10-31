@@ -10,7 +10,7 @@ find_package(ZeroMQ REQUIRED)
 find_package(LibYAML REQUIRED)
 
 set(CMAKE_C_COMPILER clang)
-set(CMAKE_C_FLAGS                "-std=gnu99 -march=native -Qunused-arguments -Werror -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS                "-std=gnu99 -march=native -Qunused-arguments -Wno-deprecated-declarations")
 set(CMAKE_C_FLAGS_DEBUG          "-O0 -g")
 set(CMAKE_C_FLAGS_RELEASE        "-O4 -DNDEBUG")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-O4 -DNDEBUG -g")
@@ -29,9 +29,25 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
        need to remove CMakeCache.txt.")
 endif()
 
+add_library(
+  acc_preload
+  SHARED
+  symbols.h
+  acc_preload.c
+)
+set_target_properties(
+  acc_preload
+  PROPERTIES
+  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
+)
+target_link_libraries(
+  acc_preload
+  ${ZEROMQ_LIBRARIES}
+)
+
 add_executable(
-  acc_bash
-  acc_bash.c
+  exec_testing
+  exec_testing.c
 )
 
 add_executable(
