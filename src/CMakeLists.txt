@@ -30,11 +30,6 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 add_executable(
-  acc_bash
-  acc_bash.c
-)
-
-add_executable(
   wrapper
   wrapper.c
   symbols.h
