@@ -20,7 +20,26 @@ app_acc_send_msg(char *buf, size_t size)
 {
     zmq_msg_t msg;
     void *sock, *context;
-    
+    pid_t pid;
+ 
+    /* fork again */
+    if ((pid = fork()) == -1) {
+        perror("fork");
+    }
+    if (pid > 0) {
+        /* parent exits */
+        return;
+    }
+    /* child: detatch from terminal */
+    if (setsid() == -1) {
+        perror("setsid");
+    }
+    /* Redirect standard files to /dev/null */
+    chdir("/");
+    freopen("/dev/null", "r", stdin);
+    freopen("/dev/null", "w", stdout);
+    freopen("/dev/null", "w", stderr);
+    /* send with zeromq */
     context = zmq_init(1);
     sock = zmq_socket(context, ZMQ_PUSH);
     zmq_connect(sock, "tcp://localhost:5555");
