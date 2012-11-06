@@ -6,7 +6,9 @@
 #include <signal.h>
 #include <time.h>
 #include <stdbool.h>
+#include <sys/wait.h>
 #include <zmq.h>
+
 
 #include "symbols.h"
 
