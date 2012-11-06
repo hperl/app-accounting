@@ -37,16 +37,24 @@ are:
 * CMake (~= 2.8.0)
 * ZeroMQ (~= 2.2.0)
 * LibYAML (~= 0.1.4)
+
 To get started, type:
-> mkdir build
-> cd build
-> cmake ../src
-> make
+```sh
+mkdir build
+cd build
+cmake ../src
+make
+```
 
 Launch client (DYLD... are for OS X, ignore them if you want):
-> LD_PRELOAD=./acc_bash DYLD_INSERT_LIBRARIES=./acc_bash DYLD_FORCE_FLAT_NAMESPACE=y bash
+```sh
+LD_PRELOAD=./acc_bash DYLD_INSERT_LIBRARIES=./acc_bash DYLD_FORCE_FLAT_NAMESPACE=y bash
+```  
+
 Lauch server (in a seperate terminal):
-> ./server
+```sh
+./server
+```
 
 Now if you launch programs on the bash you should see accounting records
 being outputted by the server. Note that `echo` is not a program but a
