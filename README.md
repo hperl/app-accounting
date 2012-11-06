@@ -32,7 +32,7 @@ that sends the message once the Server is running again.
 
 How to run it
 -------------
-The project uses CMake for a multiplatform build. Build requirements
+The project uses CMake for a multi-platform build. Build requirements
 are:
 * CMake (~= 2.8.0)
 * ZeroMQ (~= 2.2.0)
@@ -46,19 +46,19 @@ cmake ../src
 make
 ```
 
-Launch client (DYLD... are for OS X, ignore them if you want):
+Launch client with LD_PRELOAD environment variable set:
 ```sh
-LD_PRELOAD=./acc_bash DYLD_INSERT_LIBRARIES=./acc_bash DYLD_FORCE_FLAT_NAMESPACE=y bash
+LD_PRELOAD=./acc_bash bash
 ```  
 
-Lauch server (in a seperate terminal):
+Lauch server (in a separate terminal):
 ```sh
 ./server
 ```
 
 Now if you launch programs on the bash you should see accounting records
 being outputted by the server. Note that `echo` is not a program but a
-bash buildin, therefore it does not create a record (nor does it launch
+bash builtin, therefore it does not create a record (nor does it launch
 any application).
 
 To Do
