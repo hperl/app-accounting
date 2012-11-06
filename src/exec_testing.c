@@ -36,11 +36,6 @@ main(int argc, char *argv[])
     (pid == 0) && execv(bin, args);
     waitpid(pid, NULL, 0);
     
-    puts("execvP");
-    pid = fork();
-    (pid == 0) && execvP(file, "/bin/", args);
-    waitpid(pid, NULL, 0);
-    
     puts("execvp");
     pid = fork();
     (pid == 0) && execvp(file, args);
