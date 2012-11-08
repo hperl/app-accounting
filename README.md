@@ -48,7 +48,7 @@ make
 
 Launch client with LD_PRELOAD environment variable set:
 ```sh
-LD_PRELOAD=./acc_bash bash
+LD_PRELOAD=./acc_preload bash
 ```  
 
 Lauch server (in a separate terminal):
