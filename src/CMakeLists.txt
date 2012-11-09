@@ -46,39 +46,35 @@ target_link_libraries(
 )
 
 add_executable(
-  exec_testing
-  exec_testing.c
-)
-
-add_executable(
-  wrapper
-  wrapper.c
-  symbols.h
-)
-set_target_properties(
-  wrapper
-  PROPERTIES
-  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
-)
-target_link_libraries(
-  wrapper
-  ${ZEROMQ_LIBRARIES}
-)
-
-add_executable(
-  server
+  acc_server
   server.c
   xml.c
   server.h
   symbols.h
 )
 set_target_properties(
-  server
+  acc_server
   PROPERTIES
   INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
 )
 target_link_libraries(
-  server
+  acc_server
   ${LIBYAML_LIBRARIES}
   ${ZEROMQ_LIBRARIES}
 )
+
+install(
+  TARGETS acc_preload acc_server
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib/static
+)
+install(
+  PROGRAMS acc_bash
+  DESTINATION bin
+)
+
+set(CPACK_GENERATOR "RPM")
+include(CPack)
+
+
