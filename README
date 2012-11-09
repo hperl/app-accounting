@@ -1,72 +1,70 @@
-Application Accounting for EGI InSPIRE
-======================================
+                  Application Accounting for EGI InSPIRE
+                  ======================================
 
-What it does
-------------
-This software supplies a sensor for application accounting, with the
-goal to account start and end time as well as the name of the launched
-programs.
+1.0. What it does
 
+  This software supplies a sensor for application accounting, with the
+  goal to account start and end time as well as the name of the launched
+  programs.
 
-How it works
-------------
-### Client (library)
-The client is a library that overwrites the libc `execve()` function
-used to call a program. Amongst others, the Bourne Again Shell (bash)
-uses this function after a fork to call a program. The client intercepts
-the function and wraps the accounting logic around this call. The
-information is then sent to the server.
+2.0. How it works
 
-### Server (daemon)
-The server receives the sensor data from all clients and is meant to run
-in the background. Upon receiving data, the server can then look up the
-user in the girdmap file to translate the local user to a global
-identifier.
+2.1. Client (library)
 
-### Communication
-Communication between the Client and the Server is implemented using
-[ZeroMQ](http://zero.mq). If the Client can not connect to the Server, a
-background process is launched after the completion of the application
-that sends the message once the Server is running again.
+  The client is a library that overwrites the libc `execve()' function
+  used to call a program. Amongst others, the Bourne Again Shell (bash)
+  uses this function after a fork to call a program. The client intercepts
+  the function and wraps the accounting logic around this call. The
+  information is then sent to the server.
 
+2.2. Server (daemon).
 
-How to run it
--------------
-The project uses CMake for a multi-platform build. Build requirements
-are:
-* CMake (~= 2.8.0)
-* ZeroMQ (~= 2.2.0)
-* LibYAML (~= 0.1.4)
+  The server receives the sensor data from all clients and is meant to run
+  in the background. Upon receiving data, the server can then look up the
+  user in the girdmap file to translate the local user to a global
+  identifier.
 
-To get started, type:
-```sh
-cd build
-cmake ..
-make install
-```
+2.3. Communication.
 
-Build packages (RPM and DEB) with
-```sh
-make package
-```  
+  Communication between the Client and the Server is implemented using
+  [ZeroMQ](http://zero.mq). If the Client can not connect to the Server, a
+  background process is launched after the completion of the application
+  that sends the message once the Server is running again.
 
-Launch client bash wrapper:
-```sh
-acc_bash
-```  
+3.0. How to run it
 
-Lauch server (in a separate terminal):
-```sh
-acc_server
-```
+  The project uses CMake for a multi-platform build. Build requirements
+  are:
 
-Now if you launch programs on the bash you should see accounting records
-being outputted by the server. Note that `echo` is not a program but a
-bash builtin, therefore it does not create a record (nor does it launch
-any application).
+  o CMake (~= 2.8.0)
+  o ZeroMQ (~= 2.2.0)
+  o LibYAML (~= 0.1.4)
 
-To Do
------
-* Init script for the server
-* Daemonize server
-* Lookup of users in a gridmap-file)
+  To get started, type:
+
+  $ cd build
+  $ cmake ..
+  $ make install
+
+  Build packages (RPM and DEB) with
+
+  $ make package
+
+  Launch client bash wrapper:
+
+  $ acc_bash
+
+  Lauch server (in a separate terminal):
+
+  $ acc_server
+
+  Now if you launch programs on the bash you should see accounting records
+  being outputted by the server. Note that `echo' is not a program but a
+  bash builtin, therefore it does not create a record (nor does it launch
+  any application).
+
+4.0 To Do
+
+  o Init script for the server
+  o Daemonize server
+  o Lookup of users in a gridmap-file)
