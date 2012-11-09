@@ -77,7 +77,7 @@ install(
 set(CPACK_GENERATOR "RPM" "DEB")
 set(CPACK_PACKAGE_NAME "app-accounting")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "This software supplies a sensor for application accounting, with the goal to        account start and end time as well as the name of the launched programs.")
-set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/../README.md")
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/README.md")
 set(CPACK_PACKAGE_CONTACT "Henning Perl <perl@dcsec.uni-hannover.de>")
 set(CPACK_PACKAGE_VERSION_MAJOR "0")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
