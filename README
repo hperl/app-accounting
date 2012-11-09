@@ -40,20 +40,24 @@ are:
 
 To get started, type:
 ```sh
-mkdir build
 cd build
-cmake ../src
-make
+cmake ..
+make install
 ```
 
-Launch client with LD_PRELOAD environment variable set:
+Build packages (RPM and DEB) with
 ```sh
-LD_PRELOAD=./acc_preload bash
+make package
+```  
+
+Launch client bash wrapper:
+```sh
+acc_bash
 ```  
 
 Lauch server (in a separate terminal):
 ```sh
-./server
+acc_server
 ```
 
 Now if you launch programs on the bash you should see accounting records
