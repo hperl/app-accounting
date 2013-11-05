@@ -22,7 +22,7 @@ app_acc_send_msg(char *buf, size_t size)
     zmq_msg_t msg;
     void *sock, *context;
     pid_t pid;
- 
+
     /* fork again */
     if ((pid = fork()) == -1) {
         perror("fork");
@@ -54,7 +54,7 @@ int
 execve(const char *path, char *const argv[], char *const envp[])
 {
     pid_t pid;
-    
+
     /* suppress INT and TERM signals => wrappers never die :)
      * Note: child loses those after the syscall           */
     signal(SIGINT,  do_nothing);
@@ -73,7 +73,7 @@ execve(const char *path, char *const argv[], char *const envp[])
         int wait_status;
         char buf[BUF_MAX];
         size_t pos = 0;
-        
+
         signal(SIGINT,  do_nothing);
         signal(SIGTERM, do_nothing);
         /* go watch */
@@ -106,9 +106,10 @@ execve(const char *path, char *const argv[], char *const envp[])
                         KEY_TIME_START, asctime(localtime(&start_time)),
                         KEY_TIME_END,   asctime(localtime(&end_time)));
         if (pos > BUF_MAX) { goto buffer_overflow; }
-        
+
     buffer_overflow:
         app_acc_send_msg(buf, pos+1);
     }
     exit(EXIT_SUCCESS);
 }
+

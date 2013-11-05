@@ -9,7 +9,7 @@ process(char *msg, size_t size)
     yaml_parser_t p;
     yaml_document_t d;
     yaml_node_t *root;
-    
+
     yaml_parser_initialize(&p);
     yaml_parser_set_input_string(&p, (unsigned char*)msg, strlen(msg));
     yaml_parser_load(&p, &d);
@@ -43,7 +43,7 @@ main(int argc, char *argv[])
 {
     zmq_msg_t msg;
     void *sock, *context;
-    
+
     context = zmq_init(THREAD_NUM);
     sock = zmq_socket(context, ZMQ_PULL);
     zmq_bind(sock, "tcp://*:5555");
@@ -59,3 +59,4 @@ main(int argc, char *argv[])
     zmq_close(sock);
     zmq_term(context);
 }
+

@@ -54,3 +54,4 @@ xml_child_node(char *name, char *text)
     g_node_had_children = true;
     printf("\t\t<urf:%s>%s</urf:%s>\n", name, text, name);
 }
+

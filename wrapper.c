@@ -23,7 +23,7 @@ get_realpath(char *basename)
     char *DIRS[] = { "/bin", "/sbin", NULL };
     char *dir;
     size_t i = 0;
-    
+
     while ((dir = DIRS[i++])) {
         realpath = malloc(strlen(dir) + strlen(basename) + 2); /* 2 = '/' + \0 */
         sprintf(realpath, "%s/%s", dir, basename);
@@ -58,7 +58,7 @@ send(char *buf, size_t size)
 {
     zmq_msg_t msg;
     void *sock, *context;
-    
+
     context = zmq_init(1);
     sock = zmq_socket(context, ZMQ_PUSH);
     zmq_connect(sock, "tcp://localhost:5555");
@@ -77,7 +77,7 @@ main(int argc, char *argv[])
     int wait_status;
     char buf[BUF_MAX];
     size_t pos = 0;
-        
+
     /* suppress INT and TERM signals */
     signal(SIGINT,  do_nothing);
     signal(SIGTERM, do_nothing);
@@ -131,10 +131,9 @@ main(int argc, char *argv[])
     }
     /* All is good now */
     exit(EXIT_SUCCESS);
-    
+
 buffer_overflow:
     printf("ERROR: Buffer too small.");
     exit(EXIT_FAILURE);
 }
-
 
