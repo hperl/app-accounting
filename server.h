@@ -10,6 +10,9 @@
 #include <errno.h>
 #include <yaml.h>
 
+#include "output.h"
+#include "symbols.h"
+
 #ifndef app_accounting_server_h
 #define app_accounting_server_h
 
@@ -29,3 +32,4 @@ void
 xml_child_node(char *name, char *text);
 
 #endif
+

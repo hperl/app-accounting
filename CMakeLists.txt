@@ -38,7 +38,7 @@ add_library(
 set_target_properties(
   acc_preload
   PROPERTIES
-  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
+  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"
 )
 target_link_libraries(
   acc_preload
@@ -48,14 +48,16 @@ target_link_libraries(
 add_executable(
   acc_server
   server.c
-  xml.c
+  xml_output.c
+  json_output.c
+  output.c
   server.h
   symbols.h
 )
 set_target_properties(
   acc_server
   PROPERTIES
-  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"  
+  INCLUDE_DIRECTORIES "${ZEROMQ_INCLUDE_DIRS}"
 )
 target_link_libraries(
   acc_server

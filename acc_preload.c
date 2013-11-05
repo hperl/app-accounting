@@ -45,7 +45,7 @@ app_acc_send_msg(char *buf, size_t size)
     sock = zmq_socket(context, ZMQ_PUSH);
     zmq_connect(sock, "tcp://localhost:5555");
     zmq_msg_init_data(&msg, buf, size, NULL, NULL);
-    zmq_send(sock, &msg, 0);
+    zmq_sendmsg(sock, &msg, 0);
     zmq_close(sock);
     zmq_term(context);
 }

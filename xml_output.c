@@ -48,7 +48,6 @@ void
 xml_child_node(char *name, char *text)
 {
     if (!g_node_had_children) {
-        g_node_had_children = true;
         printf("\n");
     }
     g_node_had_children = true;
