@@ -63,8 +63,3 @@
   bash builtin, therefore it does not create a record (nor does it launch
   any application).
 
-4.0 To Do
-
-  o Init script for the server
-  o Daemonize server
-  o Lookup of users in a gridmap-file)
