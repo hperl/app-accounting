@@ -55,6 +55,6 @@ json_child_node(char *name, char *text)
         printf(", ");
     }
     g_first_child = false;
-    printf("%s: \"%s\"", name, text);
+    printf("\"%s\": \"%s\"", name, text);
 }
 
